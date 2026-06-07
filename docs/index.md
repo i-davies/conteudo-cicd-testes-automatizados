@@ -3,7 +3,7 @@
 Nesta aula, vamos explorar a evolução do desenvolvimento de software e entender como práticas modernas como Integração Contínua, Entrega Contínua e uma boa arquitetura de testes podem garantir entregas mais rápidas e com menos riscos.
 
 >
-> **Projeto:** Repositório com o código e testes automatizados e exemplos de CI/CD em <a href="https://github.com/example/ci-cd-examples" target="_blank" rel="noopener noreferrer">GitHub</a>.
+> **Projeto:** Repositório com o código e testes automatizados e exemplos de CI/CD em <a href="https://github.com/i-davies/IEC-Testes-Automatizados" target="_blank" rel="noopener noreferrer">GitHub</a>.
 ---
 
 ## Slides
@@ -209,3 +209,83 @@ Qual é o principal papel dos testes de integração?
 </quiz>
 
 <!-- mkdocs-quiz results -->
+
+## Exercícios de Fixação
+
+??? example "Exercício de Fixação: Teste Unitário (subiu de nível)"
+    **Enunciado**
+
+    Implemente um teste unitário para validar o comportamento de fronteira da função `subiu_de_nivel`: quando o XP inicial e o XP final permanecem no mesmo nível, o retorno deve ser falso.
+
+    **Objetivo**
+
+    Treinar leitura de regra interna e validação de condição de fronteira em caixa branca.
+
+    **Critérios de aceite**
+
+    - O teste deve usar valores que representem o mesmo nível antes e depois.
+    - O resultado esperado deve ser falso.
+    - O nome do teste deve deixar explícito que o cenário é sem mudança de nível.
+
+    **Estrutura sugerida**
+
+    - Criar o nome do teste deixando claro o cenário de mesmo nível.
+    - Definir valores de entrada para XP antes e depois.
+    - Executar a função `subiu_de_nivel`.
+    - Validar retorno falso com asserção direta.
+    - Registrar uma observação curta sobre por que este caso é importante.
+
+??? example "Exercício de Fixação: Teste de Integração (desafio_id inválido)"
+    **Enunciado**
+
+    Crie um teste de integração para validar o comportamento da rota de submissão quando o `desafio_id` informado não existe. Mesmo com uma resposta qualquer, a aplicação deve tratar como incorreta e não exibir ganho de XP.
+
+    **Objetivo**
+
+    Validar tratamento de entrada inválida e fluxo de fallback da camada web.
+
+    **Critérios de aceite**
+
+    - Enviar requisição POST para a rota de resposta.
+    - Usar um `desafio_id` que não exista no conjunto de desafios.
+    - Confirmar status HTTP 200.
+    - Confirmar mensagem de incorreta no conteúdo.
+    - Confirmar que não há texto de XP ganho por acerto.
+
+    **Estrutura sugerida**
+
+    - Reaproveitar a fixture de cliente de testes.
+    - Montar o payload com resposta qualquer, `desafio_id` inválido (ex.: 9999) e `timestamp` atual.
+    - Fazer o POST para a rota de submissão.
+    - Verificar status 200.
+    - Verificar conteúdo textual da resposta para o cenário de erro.
+    - Garantir que as asserções estejam focadas em comportamento, não em detalhe visual frágil.
+
+??? example "Exercício de Fixação: Teste E2E (navegação de retorno após resultado)"
+    **Enunciado**
+
+    Crie um teste E2E para validar a navegação de retorno do usuário após ver o resultado: responder incorretamente, visualizar o card de erro e clicar em Continuar para voltar à tela de desafio.
+
+    **Objetivo**
+
+    Validar fluxo de navegação entre páginas e recuperação do estado de interação no frontend.
+
+    **Critérios de aceite**
+
+    - A página deve carregar com elementos principais visíveis.
+    - Uma resposta inválida deve ser enviada com sucesso.
+    - A área de resultado de erro deve aparecer após o envio.
+    - O clique em Continuar deve retornar para a página inicial.
+    - Após voltar, o formulário deve estar disponível para nova tentativa.
+    - O teste deve rodar de forma estável em modo headless.
+
+    **Estrutura sugerida**
+
+    - Usar a fixture de página já disponível.
+    - Acessar a URL base da aplicação.
+    - Verificar a visibilidade dos elementos essenciais.
+    - Preencher uma resposta claramente inválida e enviar o formulário.
+    - Aguardar explicitamente o seletor de resultado.
+    - Validar a mensagem de erro ao usuário.
+    - Clicar no botão ou link Continuar.
+    - Validar que a página voltou para o desafio com os elementos do formulário visíveis.
