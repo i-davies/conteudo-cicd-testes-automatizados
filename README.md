@@ -1,4 +1,4 @@
-# Conteúdo FATEC 2026-01
+# Conteúdo Integração e Entrega Contínua
 
 Documentação de aula em **MkDocs**.
 
@@ -17,9 +17,3 @@ Documentação de aula em **MkDocs**.
    uv run mkdocs serve --livereload
    ```
    Acesse em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-## 📂 Estrutura
-- `docs/AM/`: Aprendizado de Máquina.
-- `docs/LDW/`: Laboratório de Desenvolvimento Web.
-- `docs/LDDM/`: Laboratório de Desenvolvimento Mobile.
-- `mkdocs.yml`: Configuração.
